@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/your-repo/static/js/main.db2b20e0.js",
-    "index.html": "/your-repo/index.html",
-    "main.db2b20e0.js.map": "/your-repo/static/js/main.db2b20e0.js.map"
+    "main.js": "/Migdalor_web/static/js/main.2c759817.js",
+    "index.html": "/Migdalor_web/index.html",
+    "main.2c759817.js.map": "/Migdalor_web/static/js/main.2c759817.js.map"
   },
   "entrypoints": [
-    "static/js/main.db2b20e0.js"
+    "static/js/main.2c759817.js"
   ]
 }
