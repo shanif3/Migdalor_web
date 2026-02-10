@@ -1,0 +1,47 @@
+{
+  "name": "migdalor",
+  "version": "1.0.0",
+  "description": "Migdalor",
+  "license": "ISC",
+  "author": "Tsevet X",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.6",
+    "@mui/material": "^7.3.6",
+    "@mui/x-date-pickers": "^8.25.0",
+    "@supabase/auth-ui-react": "^0.4.7",
+    "@supabase/supabase-js": "^2.89.0",
+    "dayjs": "^1.11.19",
+    "framer-motion": "^12.24.7",
+    "lucide-react": "^0.562.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^7.11.0",
+    "react-router-dom": "^7.11.0",
+    "react-scripts": "5.0.1",
+    "@fullcalendar/react": "^6.1.20",
+    "@fullcalendar/daygrid": "^6.1.20",
+    "@fullcalendar/interaction": "^6.1.20",
+    "@fullcalendar/core": "^6.1.8",
+    "date-fns": "^4.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
