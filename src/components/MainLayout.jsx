@@ -133,7 +133,7 @@ export default function MainLayout() {
     // הגדרת כל התכונות עם דרישות הרשאה
     const allClassroomFeatures = [
         { title: 'ניהול כיתות', icon: Lightbulb, path: '/Dashboard', color: '#6366f1', requiredRoles: [] }, // כולם
-        { title: 'הקצאת מפתחות', icon: Key, path: '/AllocateKeys', color: '#10b981', requiredRoles: [] }, // כולם
+        { title: 'הקצאת מפתחות', icon: Key, path: '/AllocateKeys', color: '#10b981', requiredRoles: ['מנהל', 'קה״ד גדודי בהתנסות'] }, // כולם
         { title: 'ניהול מפתחות', icon: Key, path: '/ManageKeys', color: '#f59e0b', requiredRoles: [] }, // כולם
         { title: 'בקשות מפתחות', icon: FileText, path: '/KeyRequests', color: '#8b5cf6', requiredRoles: ['מנהל', 'קה״ד גדודי'] },
         { title: 'שליחת בקשת מפתח', icon: Send, path: '/Submitkeyrequest', color: '#06b6d4', requiredRoles: ['מנהל', 'קה״ד גדודי'] },

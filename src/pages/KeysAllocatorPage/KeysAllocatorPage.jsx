@@ -40,7 +40,7 @@ import {
   Home,
   Briefcase
 } from "lucide-react";
-import { useOutletContext } from "react-router";
+import { useOutletContext, useNavigate } from "react-router";
 import { supabase } from "../../lib/supabaseClient";
 
 const KeysAllocator = () => {
@@ -50,6 +50,7 @@ const KeysAllocator = () => {
     const savedDate = localStorage.getItem("keysAllocatorDate");
     return savedDate || new Date().toISOString().split("T")[0];
   });
+  const navigate = useNavigate();
 
   const [selectedKeys, setSelectedKeys] = useState([]);
   const [selectedLessons, setSelectedLessons] = useState([]);
@@ -145,7 +146,7 @@ const KeysAllocator = () => {
         // סינון מפתחות: אם המשתמש הוא קה"ד גדודי, הוא יראה רק את המפתחות ששויכו לגדוד שלו באותו שבוע
         let filteredKeys = keysData;
         const isOnlyKahadGdudi = user?.roles?.includes("קה״ד גדודי בהתנסות") && !user?.roles?.includes("מנהל");
-        
+
         if (isOnlyKahadGdudi && userGdudId) {
           filteredKeys = keysData.filter(k => keyToBattalion[k.id] === userGdudId);
         }
@@ -353,16 +354,24 @@ const KeysAllocator = () => {
 
   if (!user) return <Box sx={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}><CircularProgress /></Box>;
 
-  if (!isAdmin) {
-    return (
-      <Container maxWidth="sm" sx={{ py: 10, display: 'flex', justifyContent: 'center' }}>
-        <Card sx={{ p: 4, textAlign: 'center', bgcolor: isDark ? 'rgba(255,255,255,0.05)' : 'white', borderRadius: '24px' }}>
-          <Shield size={64} color="#f87171" style={{ marginBottom: 16 }} />
-          <Typography variant="h5" sx={{ fontWeight: 700, color: isDark ? 'white' : '#1e293b' }}>אין הרשאת גישה</Typography>
-        </Card>
-      </Container>
-    );
-  }
+  // if (!isAdmin) {
+  //   return (
+  //     // <Container maxWidth="sm" sx={{ py: 10, display: 'flex', justifyContent: 'center' }}>
+  //     //   <Card sx={{ p: 4, textAlign: 'center', bgcolor: isDark ? 'rgba(255,255,255,0.05)' : 'white', borderRadius: '24px' }}>
+  //     //     <Shield size={64} color="#f87171" style={{ marginBottom: 16 }} />
+  //     //     <Typography variant="h5" sx={{ fontWeight: 700, color: isDark ? 'white' : '#1e293b' }}>אין הרשאת גישה</Typography>
+  //     //   </Card>
+  //     // </Container>
+  //   );
+  // }
+  // בדיקת הרשאות בטעינה ראשונית
+  useEffect(() => {
+    if (!user) return;
+    if (!isAdmin) {
+      navigate('/home');
+      return;
+    }
+  }, [user, isAdmin, navigate]);
 
   const cellStyle = {
     color: isDark ? 'rgba(255,255,255,0.8)' : '#334155',
@@ -545,7 +554,7 @@ const KeysAllocator = () => {
                       '& .MuiSvgIcon-root': { fontSize: 28 }
                     }}
                   />
-                  <Box sx={{ flex: 1 }}>  
+                  <Box sx={{ flex: 1 }}>
                     <Typography variant="h6" sx={{ fontWeight: 700, color: isDark ? 'white' : '#1e293b', mb: 1 }}>
                       חדר {key.room_number}
                     </Typography>
@@ -604,7 +613,7 @@ const KeysAllocator = () => {
         </Grid>
 
         {/* Lessons Column */}
-        <Grid item xs={12} lg={8} sx={{ display: "flex"}}>
+        <Grid item xs={12} lg={8} sx={{ display: "flex" }}>
           <Card sx={{
             width: '100%',
             flex: 1,
@@ -666,14 +675,14 @@ const KeysAllocator = () => {
                                 lesson.room_type_name === "פלוגתי"
                                   ? (isDark ? 'rgba(139, 92, 246, 0.15)' : '#f3e8ff')
                                   : lesson.room_type_name === "דו״צ"
-                                  ? (isDark ? 'rgba(234, 88, 12, 0.15)' : '#fff7ed')
-                                  : (isDark ? 'rgba(59, 130, 246, 0.15)' : '#dbeafe'),
+                                    ? (isDark ? 'rgba(234, 88, 12, 0.15)' : '#fff7ed')
+                                    : (isDark ? 'rgba(59, 130, 246, 0.15)' : '#dbeafe'),
                               color:
                                 lesson.room_type_name === "פלוגתי"
                                   ? '#a855f7'
                                   : lesson.room_type_name === "דו״צ"
-                                  ? '#ea580c'
-                                  : '#2563eb',
+                                    ? '#ea580c'
+                                    : '#2563eb',
                               fontSize: '0.75rem', fontWeight: 600
                             }}
                           />
